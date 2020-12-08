@@ -1,0 +1,25 @@
+# VARIABLES
+mongo-host: localhost
+mongo-database: slot-service
+mongo-username: user
+mongo-password: dev
+
+# DATABASE MONGO
+spring:
+  data:
+    mongodb:
+      authenticationDatabase: admin
+      autoIndexCreation: false
+      host: ${mongo-host}
+      port: 27017
+      database: ${mongo-database}
+      username: ${mongo-username}
+      password: ${mongo-password}
+
+# CUSTOM PROPS
+app:
+  auth:
+    authorizationHeader: Authorization
+    authorizationPrefix: Bearer
+    tokenSecret: TEST
+    tokenExpirationSec: 864000
