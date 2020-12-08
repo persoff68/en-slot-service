@@ -1,0 +1,8 @@
+# SERVER
+server:
+  port: 8080
+
+# LOGGING
+logging:
+  level:
+    ROOT: INFO
