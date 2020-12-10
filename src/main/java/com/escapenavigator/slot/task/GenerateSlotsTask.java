@@ -23,23 +23,27 @@ public class GenerateSlotsTask {
 
     private List<UUID> questRoomIdList = new ArrayList<>();
 
-    @Scheduled(initialDelay = 1000 * 10, fixedDelay = Long.MAX_VALUE)
+    @Scheduled(initialDelay = 1000 * 5, fixedDelay = Long.MAX_VALUE)
     public void reportCurrentTime() {
         generateQuestRoomIds();
+        List<Slot> slotList = new ArrayList<>();
         questRoomIdList.forEach(questRoomId -> {
-            List<Slot> slotList = generateYearOfSlots(questRoomId);
-            slotRepository.saveAll(slotList);
+            List<Slot> yearsSlotList = generateYearOfSlots(questRoomId);
+            slotList.addAll(yearsSlotList);
             log.info("GenerateSlotsTask: slots for questRoom " + questRoomId + " generated");
         });
         log.info("GenerateSlotsTask: all slots generated");
+        slotRepository.saveAll(slotList);
+
+        log.info("GenerateSlotsTask: all slots saved");
     }
 
     private List<Slot> generateYearOfSlots(UUID questRoomId) {
         List<Slot> slotList = new ArrayList<>();
         for (int i = 0; i < 365; i++) {
             Date date = generateDateOfYear(i);
-            List<Slot> daySlotList = generateDayOfSlots(questRoomId, date);
-            slotList.addAll(daySlotList);
+            List<Slot> daysSlotList = generateDayOfSlots(questRoomId, date);
+            slotList.addAll(daysSlotList);
         }
         return slotList;
     }
