@@ -1,7 +1,7 @@
 package com.escapenavigator.slot.mapper;
 
-import com.escapenavigator.slot.domain.Slot;
-import com.escapenavigator.slot.domain.dto.SlotDTO;
+import com.escapenavigator.slot.model.Slot;
+import com.escapenavigator.slot.model.dto.SlotDTO;
 import org.mapstruct.Mapper;
 import org.mapstruct.ReportingPolicy;
 

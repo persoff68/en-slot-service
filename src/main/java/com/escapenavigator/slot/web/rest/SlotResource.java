@@ -1,7 +1,7 @@
 package com.escapenavigator.slot.web.rest;
 
-import com.escapenavigator.slot.domain.Slot;
-import com.escapenavigator.slot.domain.dto.SlotDTO;
+import com.escapenavigator.slot.model.Slot;
+import com.escapenavigator.slot.model.dto.SlotDTO;
 import com.escapenavigator.slot.mapper.SlotMapper;
 import com.escapenavigator.slot.service.SlotService;
 import lombok.RequiredArgsConstructor;

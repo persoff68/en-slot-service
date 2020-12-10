@@ -1,17 +1,19 @@
-package com.escapenavigator.slot.domain;
+package com.escapenavigator.slot.model;
 
 import lombok.Data;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.Date;
 import java.util.UUID;
 
 @Data
+@Document(collection = "slot")
 public class Slot {
 
     @Id
-    private UUID id;
-    private String questRoom;
+    private UUID id = UUID.randomUUID();
+    private UUID questRoomId;
     private Date date;
     private Date start;
     private Date end;

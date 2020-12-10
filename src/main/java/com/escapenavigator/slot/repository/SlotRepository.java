@@ -1,6 +1,6 @@
 package com.escapenavigator.slot.repository;
 
-import com.escapenavigator.slot.domain.Slot;
+import com.escapenavigator.slot.model.Slot;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 

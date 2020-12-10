@@ -1,6 +1,6 @@
 package com.escapenavigator.slot.service;
 
-import com.escapenavigator.slot.domain.Slot;
+import com.escapenavigator.slot.model.Slot;
 import com.escapenavigator.slot.error.ModelAlreadyExistsException;
 import com.escapenavigator.slot.error.ModelNotFoundException;
 import com.escapenavigator.slot.repository.SlotRepository;

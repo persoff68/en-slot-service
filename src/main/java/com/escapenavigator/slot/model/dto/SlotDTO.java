@@ -1,6 +1,6 @@
-package com.escapenavigator.slot.domain.dto;
+package com.escapenavigator.slot.model.dto;
 
-import com.escapenavigator.slot.domain.Slot;
+import com.escapenavigator.slot.model.Slot;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
