@@ -13,11 +13,12 @@ public class Slot {
 
     @Id
     private UUID id = UUID.randomUUID();
-    private UUID questRoomId;
+    private UUID questroomId;
     private Date date;
     private Date start;
     private Date end;
     private UUID tariffId;
+    private UUID templateId;
     private UUID profileId;
 
 }

@@ -21,33 +21,33 @@ public class GenerateSlotsTask {
 
     private final SlotRepository slotRepository;
 
-    private List<UUID> questRoomIdList = new ArrayList<>();
+    private List<UUID> questroomIdList = new ArrayList<>();
 
     @Scheduled(initialDelay = 1000 * 10, fixedDelay = Long.MAX_VALUE)
     public void reportCurrentTime() {
-        generateQuestRoomIds();
-        questRoomIdList.forEach(questRoomId -> {
-            List<Slot> slotList = generateYearOfSlots(questRoomId);
+        generatequestroomIds();
+        questroomIdList.forEach(questroomId -> {
+            List<Slot> slotList = generateYearOfSlots(questroomId);
             slotRepository.saveAll(slotList);
-            log.info("GenerateSlotsTask: slots for questRoom " + questRoomId + " generated");
+            log.info("GenerateSlotsTask: slots for questroom " + questroomId + " generated");
         });
         log.info("GenerateSlotsTask: all slots generated");
     }
 
-    private List<Slot> generateYearOfSlots(UUID questRoomId) {
+    private List<Slot> generateYearOfSlots(UUID questroomId) {
         List<Slot> slotList = new ArrayList<>();
         for (int i = 0; i < 365; i++) {
             Date date = generateDateOfYear(i);
-            List<Slot> daySlotList = generateDayOfSlots(questRoomId, date);
+            List<Slot> daySlotList = generateDayOfSlots(questroomId, date);
             slotList.addAll(daySlotList);
         }
         return slotList;
     }
 
-    private List<Slot> generateDayOfSlots(UUID questRoomId, Date date) {
+    private List<Slot> generateDayOfSlots(UUID questroomId, Date date) {
         List<Slot> slotList = new ArrayList<>();
         for (int i = 10; i < 21; i++) {
-            Slot slot = generateSlot(questRoomId, date, generateStartDate(date, i));
+            Slot slot = generateSlot(questroomId, date, generateStartDate(date, i));
             slotList.add(slot);
         }
         return slotList;
@@ -66,21 +66,21 @@ public class GenerateSlotsTask {
         return cal.getTime();
     }
 
-    private static Slot generateSlot(UUID questRoomId, Date date, Date start) {
+    private static Slot generateSlot(UUID questroomId, Date date, Date start) {
         Date end = Date.from(date.toInstant().plus(Duration.ofHours(1)));
 
         Slot slot = new Slot();
-        slot.setQuestRoomId(questRoomId);
+        slot.setquestroomId(questroomId);
         slot.setDate(date);
         slot.setStart(start);
         slot.setEnd(end);
         return slot;
     }
 
-    private void generateQuestRoomIds() {
-        questRoomIdList = new ArrayList<>();
+    private void generatequestroomIds() {
+        questroomIdList = new ArrayList<>();
         for (int i = 0; i < 1000; i++) {
-            questRoomIdList.add(UUID.randomUUID());
+            questroomIdList.add(UUID.randomUUID());
         }
     }
 
