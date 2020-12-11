@@ -1,6 +1,6 @@
 package com.escapenavigator.slot.model.dto;
 
-import com.escapenavigator.slot.model.TariffDTO;
+import com.escapenavigator.slot.model.Tariff;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 

@@ -1,13 +1,16 @@
 package com.escapenavigator.slot.service;
 
 import com.escapenavigator.slot.model.Slot;
+import com.escapenavigator.slot.model.Holiday;
 import com.escapenavigator.slot.error.ModelAlreadyExistsException;
 import com.escapenavigator.slot.error.ModelNotFoundException;
 import com.escapenavigator.slot.repository.SlotRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.UUID;
+
 
 @Service
 @RequiredArgsConstructor
@@ -39,6 +42,26 @@ public class SlotService {
             throw new ModelNotFoundException();
         }
         slotRepository.deleteById(id);
+    }
+
+    public void removeHolidayId(UUID holidayId) {
+        List<Slot> slotList = slotRepository.findAllByHolidayId(holidayId);
+
+        slotList.forEach(s -> {
+            s.setHolidayId(null);
+        });
+
+        slotRepository.saveAll(slotList);
+    }
+
+    public void addHolidayId(Holiday holiday) {
+        List<Slot> slotList = slotRepository.findAllByStartDateGreaterThanAndEndDateLessThanAndQuestroomIdIn(holiday.getStartDate(), holiday.getEndDate(), holiday.getQuestroomIds());
+
+        slotList.forEach(s -> {
+            s.setHolidayId(holiday.getId());
+        });
+
+        slotRepository.saveAll(slotList);
     }
 
 }

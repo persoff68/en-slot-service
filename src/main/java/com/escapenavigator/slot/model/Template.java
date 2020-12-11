@@ -7,14 +7,6 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import java.util.UUID;
 import java.util.List;
 
-/**
- * Создание шаблона простое
- * 
- * Редактировать шаблон можно только если нет игр на слоты с данным шаблоном
- * При редактировании шаблона необходимо перегенерировать все слоты, использующие данный шаблон в Schedule
- * 
- * Удалить шаблон можно, только если он не используется в Schedule
- */
 
 @Data
 @Document(collection = "template")
@@ -22,9 +14,23 @@ public class Template {
 
     @Id
     private UUID id = UUID.randomUUID();
-    private String questroomId;
-    private String profileId;
-    private List slotsTemplate; // [[{start: '10:00', end: "11:00", tariff: tariff.id}],[],[],[],[],[],[]]
+    private UUID questroomId;
+    private UUID profileId;
+    private List<SlotTemplateList> slotsTemplate; 
+
+    @Data
+    public static class SlotTemplateList {
+        private int dayOfWeek;
+        private List<SlotTemplate> slots;
+    }
+
+    @Data
+    public static class SlotTemplate {
+        private String start;
+        private String end;
+        private UUID tariff;
+    }
+
 
 }
 
