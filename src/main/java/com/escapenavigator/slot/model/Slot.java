@@ -19,6 +19,7 @@ public class Slot {
     private Date end;
     private UUID tariffId;
     private UUID templateId;
+    private UUID orderId;
     private UUID holidayId;
     private UUID profileId;
 

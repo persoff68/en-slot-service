@@ -6,8 +6,25 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.UUID;
+import java.util.Date;
 
 @Repository
 public interface ScheduleRepository extends MongoRepository<Schedule, UUID> {
+
+    /**
+     * 
+     * @param profileId
+     * @return
+     */
     List<Schedule> findByProfileId(UUID profileId);
+
+    /**
+     * Find previos {@link Schedule} with status "current"
+     * 
+     * @param startDate
+     * @param status
+     * @param questroomId
+     * @return
+     */
+    Schedule findByStartDateLessThanByStatusByQuestroomId(Date startDate, String status, UUID questroomId);
 }

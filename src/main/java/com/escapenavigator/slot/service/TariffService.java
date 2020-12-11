@@ -34,6 +34,7 @@ public class TariffService {
                 .orElseThrow(ModelNotFoundException::new);
     }
 
+    
     public List<Tariff> getByProfile(UUID profileId) {
         return tariffRepository.findByProfileId(profileId);
     }

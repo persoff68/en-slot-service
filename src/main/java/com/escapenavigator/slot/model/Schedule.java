@@ -23,8 +23,10 @@ public class Schedule {
     @Id
     private UUID id = UUID.randomUUID();
     private String profileId;
+    private String status; // current, past, future
     private UUID templateId; //!! айди шаблона для генерации расписания
     private Date startDate; // с какой даты вступает в силу данное расписание
-    private List<UUID> questroomIds; // айдишники квестов, для которых генерировать слоты
+    private Date endDate; // по какую дату действовало расписание, устанавливается в кроне
+    private UUID questroomId; 
 
 }

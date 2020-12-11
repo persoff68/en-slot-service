@@ -25,6 +25,7 @@ import java.util.UUID;
 public class TemplateService {
 
     private final TemplateRepository templateRepository;
+    private final SlotService slotService;
 
     public Template getById(UUID id) {
         return templateRepository.findById(id)
@@ -49,6 +50,9 @@ public class TemplateService {
         }
 
         // check if template.id is used in one of the slots which has order.id
+        if (slotService.someHasTemplateId(template.getId())) {
+            throw new Error();
+        }
 
         // get all schedules, current or future, that are used in this template
 
